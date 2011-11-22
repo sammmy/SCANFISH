@@ -18,7 +18,7 @@ public:
     virtual void detach(TransmitLstn *T);
     virtual void notify();
 protected:
-    TransmiSub();
+    TransmitSub();
 private:
     std::list<TransmitLstn *> *_transLstn;
 };

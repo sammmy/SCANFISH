@@ -1,6 +1,6 @@
 #include "controller.h"
-#include "Connection.h"
-#include "MainWindow.h"
+//#include "Connection.h"
+//#include "MainWindow.h"
 
 Controller *Controller::singleton = NULL;
 
