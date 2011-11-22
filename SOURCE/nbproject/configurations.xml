@@ -33,6 +33,10 @@
       <itemPath>controller.cpp</itemPath>
       <itemPath>controller.h</itemPath>
       <itemPath>generalScreen.h</itemPath>
+      <itemPath>gsConnect.h</itemPath>
+      <itemPath>gsMessageEditor.h</itemPath>
+      <itemPath>gsReceive.h</itemPath>
+      <itemPath>gsTransmit.h</itemPath>
       <itemPath>main.cpp</itemPath>
       <itemPath>msg.cpp</itemPath>
       <itemPath>msg.h</itemPath>
