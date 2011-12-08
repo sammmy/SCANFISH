@@ -1,7 +1,4 @@
 #include "cannet.h"
-#include<stdio.h>
-#include <unistd.h>
-#include <pthread.h>
 
 
 
@@ -54,7 +51,8 @@ void *CanNet::writingthread(void *obj_ptr)
 
 void CanNet::reading()
 {
-	Msg *msg;
+	Msg *msg; 
+        GSReceive *gsRec;
 	while(1)
 	{
 		canio->receive(&msg);
@@ -62,6 +60,7 @@ void CanNet::reading()
 	        // NOTIFY THE LISTENER
 	        // listener->notify();
 		lstn->notify();
+                gsRec->notify(msg);
 	}
 	pthread_exit(NULL);
 }

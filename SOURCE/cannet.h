@@ -1,13 +1,16 @@
 #ifndef CANNET_H
 #define	CANNET_H
 
-
-#include "msg.h"
-#include "canio.h"
 #include <queue>
 #include <semaphore.h>
 #include <pthread.h>
+#include <stdio.h>
+#include <unistd.h>
+
+#include "msg.h"
+#include "canio.h"
 #include "canlistener.h"
+#include "gsReceive.h"
 
 
 class CanListener;

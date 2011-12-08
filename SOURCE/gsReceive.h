@@ -1,33 +1,14 @@
 #ifndef GSRECEIVE_H
 #define	GSRECEIVE_H
 
-class ReceiveLstn
-{
-public:
-    virtual ~ReceiveLstn();
-    virtual void update(ReceiveSub *changed)=0;
-protected:
-    ReceiveLstn();
-};
-
-class ReceiveSub
-{
-public:
-    virtual ~ReceiveSub();
-    virtual void attach(ReceiveLstn *R);
-    virtual void detach(ReceiveLstn *R);
-    virtual void notify();
-protected:
-    ReceiveSub();
-private:
-    std::list<ReceiveLstn *> *_recLstn;
-};
+#include "gsReceiveSL.h"
+#include "msg.h"
 
 class GSReceive:public ReceiveSub
 {
 public:
     GSReceive();
-    virtual Msg getMsg();
+    
 };
 
 class ReceiveTable:public ReceiveLstn
@@ -35,10 +16,12 @@ class ReceiveTable:public ReceiveLstn
 public:
     ReceiveTable(GSReceive*);
     virtual ~ReceiveTable();
-    virtual void update(ReceiveSub*);
-    void addmsg();
+    virtual void update(ReceiveSub*,Msg*);
+    void addmsg(Msg*);
 private:
     GSReceive *_gsRec;
+    std::list <Msg*> recTable;
+    
 };
 
 #endif	/* GSRECEIVE_H */

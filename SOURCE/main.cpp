@@ -1,20 +1,15 @@
-/*
- * File:   main.cpp
- * Author: Ira
- *
- * Created on November 22, 2011, 9:51 PM
- */
+#include <stdio.h>
+#include <cstdlib>
 
-#include <QtGui/QApplication>
+#include "generalScreen.h"
+#include "gsConnect.h"
+#include "gsMessageEditor.h"
+#include "gsReceive.h"
+#include "gsTransmit.h"
+
+using namespace std;
 
 int main(int argc, char *argv[])
 {
-    // initialize resources, if needed
-    // Q_INIT_RESOURCE(resfile);
-
-    QApplication app(argc, argv);
-
-    // create and show your widgets here
-
-    return app.exec();
+    return 0;
 }
