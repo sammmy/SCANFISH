@@ -2,19 +2,22 @@
 
 void ReceiveSub :: attach(ReceiveLstn *Rlstn)
 {
-    _recLstn->insert(_recLstn->end(),Rlstn);
+    recLstnList->insert(recLstnList->end(),Rlstn);
 }
 
 void ReceiveSub :: detach(ReceiveLstn *Rlstn)
 {
-    _recLstn->remove(Rlstn);
+    recLstnList->remove(Rlstn);
 }
 
 void ReceiveSub :: notify(Msg *msg)
 {
-  // ListIterator <ReceiveLstn*> i(_recLstn);
-  // for (i.First();!i.IsDone();i.Next())
-  //  {
-  //      i.CurrentItem->update(this,msg);
-  //  }
+    std::list<ReceiveLstn*>::iterator it;
+    ReceiveLstn *CurrentRL;
+   
+    for (it=recLstnList->begin();it!=recLstnList->end();it++)
+    {
+        CurrentRL=*it;
+        CurrentRL->update(this,msg);
+    }
 }

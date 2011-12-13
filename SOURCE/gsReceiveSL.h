@@ -29,7 +29,7 @@ public:
 protected:
     ReceiveSub();
 private:
-    std::list<ReceiveLstn *> *_recLstn;
+    std::list<ReceiveLstn *> *recLstnList;
 };
 
 #endif	/* GSRECEIVESL */

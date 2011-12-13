@@ -25,7 +25,7 @@ public:
 protected:
     TransmitSub();
 private:
-    std::list<TransmitLstn *> *_transLstn;
+    std::list<TransmitLstn *> *transLstnList;
 };
 
 #endif	/* GSTRANSMITSL_H */

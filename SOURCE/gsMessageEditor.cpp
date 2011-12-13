@@ -1,6 +1,6 @@
 #include "gsMessageEditor.h"
 
-int GSMessageEditor::gssend(unsigned int msgId, unsigned int msgDlc, unsigned char msgData[8])
+int GSMessageEditor::gssend(unsigned long msgId, unsigned int msgDlc, unsigned char msgData[8])
 {
     int i;
     GSTransmit *gsTrans;

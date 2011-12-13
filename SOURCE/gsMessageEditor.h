@@ -9,7 +9,7 @@ class GSMessageEditor
 {
 public:
     GSMessageEditor();
-    int gssend(unsigned int msgId, unsigned int msgDlc, unsigned char msgData[8]);
+    int gssend(unsigned long msgId, unsigned int msgDlc, unsigned char msgData[8]);
 private:
     Controller *cnt;
     Msg *msg;
