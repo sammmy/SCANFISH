@@ -1,45 +1,32 @@
 #ifndef GSRECEIVE_H
-#define	GSRECEIVE_H
+#define GSRECEIVE_H
 
-class ReceiveLstn
-{
-public:
-    virtual ~ReceiveLstn();
-    virtual void update(ReceiveSub *changed)=0;
-protected:
-    ReceiveLstn();
-};
-
-class ReceiveSub
-{
-public:
-    virtual ~ReceiveSub();
-    virtual void attach(ReceiveLstn *R);
-    virtual void detach(ReceiveLstn *R);
-    virtual void notify();
-protected:
-    ReceiveSub();
-private:
-    std::list<ReceiveLstn *> *_recLstn;
-};
+#include <stdio.h>
+#include <map>
+#include "gsReceiveSL.h"
+#include "msg.h"
+#include "controller.h"
 
 class GSReceive:public ReceiveSub
 {
 public:
     GSReceive();
-    virtual Msg getMsg();
+
+    void haveReceived(Msg *msg);
+
 };
 
 class ReceiveTable:public ReceiveLstn
 {
 public:
     ReceiveTable(GSReceive*);
-    virtual ~ReceiveTable();
-    virtual void update(ReceiveSub*);
-    void addmsg();
+    //virtual ~ReceiveTable();
+    virtual void update(ReceiveSub*,Msg*);
+    void addmsg(Msg*);
 private:
-    GSReceive *_gsRec;
+    GSReceive *gsRec;
+    typedef std::map <int,Msg*> recTable;
+    recTable recTab;
+
 };
-
-#endif	/* GSRECEIVE_H */
-
+#endif /* GSRECEIVE_H */

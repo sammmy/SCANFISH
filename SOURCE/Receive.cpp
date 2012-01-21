@@ -141,8 +141,6 @@ void Receive :: ReceiveSlot(int ID,int DLC,QString DATA,QTime time)
         RecTab->item(0,3)->setTextAlignment(Qt::AlignCenter);
 
         RecTab->setSortingEnabled(true);
-     //   RecTab->sortByColumn(1); //Sorting by ID
-     //   RecTab->sortByColumn(0,Qt::AscendingOrder); //Sorting by Timestamp
     }
 }
 
@@ -171,7 +169,8 @@ void Receive :: RecTableSave()
             stream<<"\t\t\t";
             text="DLC";
             stream<<text;
-            stream<<"\t\t\t";
+            stream<<"\t\t\t";     //   RecTab->sortByColumn(1); //Sorting by ID
+     //   RecTab->sortByColumn(0,Qt::AscendingOrder); //Sorting by Timestamp
             text=" DATA";
             stream<<text;
             stream<<"\n\n";

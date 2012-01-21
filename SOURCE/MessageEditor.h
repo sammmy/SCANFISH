@@ -30,8 +30,9 @@ class MessageEditor : public QGroupBox
     QGridLayout *MesEditLayout;
 
 public:
-    MessageEditor (QWidget *MesEd,
-            Controller *mContr,Msg *mGuiMsgContainer);
+    //MessageEditor (QWidget *MesEd,
+    //        Controller *mContr,Msg *mGuiMsgContainer);
+    MessageEditor (QWidget *MesEd);
     void setSleep();
     void wakeUp();
     signals:

@@ -46,8 +46,7 @@ void Connection :: ConnectClicked()
     tabName=can0->text();
     strInt.clear();
     strInt.append(can0->text().toAscii());
-//    if (GS->GSCon->gsConnection(strInt.data(),canl)==0)
-    if (Controller::getController()->connect(1000,strInt.data(),canl)>0)
+    if (GS->GSCon->gsConnection(strInt.data(),canl)==0)
     {
         ConnectButton->setEnabled(false);
         DisconnectButton->setEnabled(true);
@@ -65,8 +64,7 @@ void Connection :: DisconnectClicked()
     can0->setEnabled(true);
     OnOff->setText("OFF");
 
-//    GS->GSCon->gsDisconnection();
-    Controller::getController()->disconnect(Controller::getController()->contrNum);
+    GS->GSCon->gsDisconnection();
     emit disactive();
 }
 

@@ -11,7 +11,7 @@ MainWindow :: MainWindow (QWidget *MainWindow,
     Contr=mContr;
     MainLayout = new QVBoxLayout;
 
-    MessEd = new MessageEditor(NULL,Contr,Contr->allocMsg());
+    MessEd = new MessageEditor(NULL);
     Trans = new Transmit(NULL);
     Rec = new Receive(NULL);
     Con = new Connection(NULL,this);
@@ -42,9 +42,7 @@ MainWindow :: MainWindow (QWidget *MainWindow,
 int MainWindow :: connect()
 {
      MessEd->wakeUp();
-     std::map <int,CanNet*>::iterator it;
-     it=Contr->nettab.find(Contr->netCount);
-     num=it->first;
+     num=GeneralScreen::getGS()->GSCon->currentNet();
 }
 
 int MainWindow :: disconnect()
@@ -53,16 +51,12 @@ int MainWindow :: disconnect()
 }
 
 int MainWindow :: notify()
-{
-    printf("notify");
-    
+{    
     unsigned int i;
     QString text;
     char data_element[17];
     Msg *msg;
-    printf("notifying...\n");
     Contr->receive(&msg,num);
-    printf("Contr received\n");
     for (i=0;i<msg->getDlc();i++)
     {
         sprintf(data_element,"%02X",msg->getData(i));
@@ -71,7 +65,7 @@ int MainWindow :: notify()
     QTime time;
     time=((QDateTime::fromTime_t(msg->getTimestampSec())).time());
     time=time.addMSecs(msg->getTimestampMS()/1000);
-
+    GeneralScreen::getGS()->GSRec->haveReceived(msg);
     emit ReceiveSignal(msg->getID(),msg->getDlc(),text,time);
     msg->setMsgFree();
     return 0;

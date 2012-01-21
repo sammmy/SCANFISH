@@ -39,6 +39,16 @@
       <itemPath>generalScreen.h</itemPath>
       <itemPath>gsConnect.cpp</itemPath>
       <itemPath>gsConnect.h</itemPath>
+      <itemPath>gsMessageEditor.cpp</itemPath>
+      <itemPath>gsMessageEditor.h</itemPath>
+      <itemPath>gsReceive.cpp</itemPath>
+      <itemPath>gsReceive.h</itemPath>
+      <itemPath>gsReceiveSL.cpp</itemPath>
+      <itemPath>gsReceiveSL.h</itemPath>
+      <itemPath>gsTransmit.cpp</itemPath>
+      <itemPath>gsTransmit.h</itemPath>
+      <itemPath>gsTransmitSL.cpp</itemPath>
+      <itemPath>gsTransmitSL.h</itemPath>
       <itemPath>main.cpp</itemPath>
       <itemPath>msg.cpp</itemPath>
       <itemPath>msg.h</itemPath>

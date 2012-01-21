@@ -42,8 +42,8 @@ Msg *MsgSuperviser::allocMsgContainer()
 		valloc.push_back(ptr);
 	}
 	// mutex up
+        
 	pthread_mutex_unlock(&mutex);
-
 
 	return ptr;
 }

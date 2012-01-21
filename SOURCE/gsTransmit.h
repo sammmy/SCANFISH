@@ -1,45 +1,32 @@
 #ifndef GSTRANSMIT_H
-#define	GSTRANSMIT_H
+#define GSTRANSMIT_H
 
-class TransmitLstn
-{
-public:
-    virtual ~TransmitLstn();
-    virtual void update(TransmitSub *changed)=0;
-protected:
-    TransmitLstn();
-};
-
-class TransmitSub
-{
-public:
-    virtual ~TransmitSub();
-    virtual void attach(TransmitLstn *T);
-    virtual void detach(TransmitLstn *T);
-    virtual void notify();
-protected:
-    TransmiSub();
-private:
-    std::list<TransmitLstn *> *_transLstn;
-};
+#include <map>
+#include "gsTransmitSL.h"
+#include "msg.h"
 
 class GSTransmit:public TransmitSub
 {
 public:
     GSTransmit();
-    virtual Msg getMsg();
+
+    void haveSent(Msg *msg);
+
+private:
+    Msg *msg;
 };
 
 class TransmitTable:public TransmitLstn
 {
 public:
     TransmitTable(GSTransmit*);
-    virtual ~TransmitTable();
-    virtual void update(TransmitSub*);
-    void addmsg();
+    void update(TransmitSub*,Msg*);
+    void addmsg(Msg*);
+
 private:
-    GSTransmit *_gsTrans;
+    GSTransmit *gsTrans;
+    typedef std::map <int,Msg*> transTable;
+    transTable transTab;
 };
 
-#endif	/* GSTRANSMIT_H */
-
+#endif /* GSTRANSMIT_H */

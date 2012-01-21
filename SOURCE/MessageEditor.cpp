@@ -1,12 +1,12 @@
 #include "MessageEditor.h"
 #include "Transmit.h"
+#include "generalScreen.h"
 
-MessageEditor::MessageEditor(QWidget *MesEd,Controller *mContr,
-                                Msg *mGuiMsgContainer) : QGroupBox(MesEd)
+
+MessageEditor::MessageEditor (QWidget *MesEd)
 {
    f=0;
-   GuiMsgContainer=mGuiMsgContainer;
-   Contr=mContr;
+   Contr=Controller::getController();;
 
    setTitle("    Message Editor");
 
@@ -202,25 +202,27 @@ void MessageEditor :: SendSigSl()
 {
     emit changeNum();
     Controller *cnt=Controller::getController();
-    Msg *msg=cnt->allocMsg();
     bool ok;
     QString data;
     int i;
-    msg->setID(tLabel_fID->text().toUInt(&ok,10));
-    msg->setDlc(tLabel_fDLC->text().toUInt(&ok,10));
-    for(i=0;i<msg->getDlc();i++)
+    unsigned long gsId;
+    unsigned int gsDlc;
+    unsigned char gsData[8];
+    gsId=tLabel_fID->text().toUInt(&ok,10);
+    gsDlc=tLabel_fDLC->text().toUInt(&ok,10);
+    GeneralScreen::getGS()->GSMesEdit->gsStart();
+    for(i=0;i<tLabel_fDLC->text().toUInt(&ok,10);i++)
     {
        data=data+" "+tLabel_fDATA[i]->text();
-       msg->setData(i,tLabel_fDATA[i]->text().toUShort(&ok,16));
-       
+       gsData[i]=tLabel_fDATA[i]->text().toUShort(&ok,16);
     }
-    msg->fixTime();
     QTime time;
-    time=((QDateTime::fromTime_t(msg->getTimestampSec())).time());
-    time=time.addMSecs(msg->getTimestampMS()/1000);
-    if((cnt->send(msg,cnt->contrNum)==0))
+    //struct timeval timestamp;
+    time=(QDateTime::fromTime_t(GeneralScreen::getGS()->GSMesEdit->getTimestampSec()).time());
+    time=time.addMSecs(GeneralScreen::getGS()->GSMesEdit->getTimestampMS()/1000);
+    if (GeneralScreen::getGS()->GSMesEdit->gsSend(gsId,gsDlc,gsData)==0)
     {
-       emit SendSig(tLabel_fID->text(),tLabel_fDLC->text(), data,time);
+       emit SendSig(tLabel_fID->text(),tLabel_fDLC->text(),data,time);
     }
 }
 
