@@ -3,6 +3,7 @@
 
 Connection::Connection(QWidget *Con,CanListener *mcanl) : QWidget (Con)
 {
+   GS=new GeneralScreen();
    canl=mcanl;
    can0 = new QLineEdit;
    can0->setPlaceholderText("Interface");
@@ -42,8 +43,10 @@ Connection::Connection(QWidget *Con,CanListener *mcanl) : QWidget (Con)
 
 void Connection :: ConnectClicked()
 {
+    tabName=can0->text();
     strInt.clear();
     strInt.append(can0->text().toAscii());
+//    if (GS->GSCon->gsConnection(strInt.data(),canl)==0)
     if (Controller::getController()->connect(1000,strInt.data(),canl)>0)
     {
         ConnectButton->setEnabled(false);
@@ -61,7 +64,8 @@ void Connection :: DisconnectClicked()
     ConnectButton->setEnabled(true);
     can0->setEnabled(true);
     OnOff->setText("OFF");
-    
+
+//    GS->GSCon->gsDisconnection();
     Controller::getController()->disconnect(Controller::getController()->contrNum);
     emit disactive();
 }
@@ -73,28 +77,3 @@ void Connection :: EnableConnectButton()
     else
         ConnectButton->setEnabled(true);
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

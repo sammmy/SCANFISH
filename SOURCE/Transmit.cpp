@@ -63,6 +63,7 @@ void Transmit :: TransTableClear()
 void Transmit :: SendSlot (QString ID, QString DLC, QString DATA,QTime time)
 {
     k++;
+    TransTab->setSortingEnabled(false);
     TransClearButton->setEnabled(true);
     TransSaveButton->setEnabled(true);
 
@@ -99,6 +100,7 @@ void Transmit :: SendSlot (QString ID, QString DLC, QString DATA,QTime time)
     T_Item4->setText(DATA);
     TransTab->setItem(0,3,T_Item4);
     TransTab->item(0,3)->setTextAlignment(Qt::AlignCenter);
+    TransTab->setSortingEnabled(true);
 }
 
 void Transmit :: TransTableSave()

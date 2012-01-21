@@ -8,6 +8,9 @@
 #include <QDateTime>
 #include <QTime>
 #include <QMainWindow>
+#include <QToolButton>
+#include <QPushButton>
+
 #include "MessageEditor.h"
 #include "Transmit.h"
 #include "Receive.h"
@@ -23,13 +26,14 @@ class MainWindow : public QWidget, public CanListener
     QVBoxLayout *MainLayout;
 
 public:
-    MainWindow (QWidget *MainWin, Controller *mContr);
+    MainWindow (QWidget *MainWindow, Controller *mContr);
 
     int notify();
     int errorInNet(const char *str);
     int getnum();
     void setContrNum();
     int num;
+    Connection *Con;
 
     signals:
     void ReceiveSignal(int ID,int DLC,QString DATA,QTime time);
@@ -45,7 +49,7 @@ private:
     MessageEditor *MessEd; 
     Transmit *Trans; 
     Receive *Rec;
-    Connection *Con;
+//    Connection *Con;
     Controller *Contr;
 };
 

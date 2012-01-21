@@ -10,6 +10,7 @@
                    displayName="Resource Files"
                    projectFiles="true"
                    kind="SOURCE_LOGICAL_FOLDER">
+      <itemPath>newic.png</itemPath>
     </logicalFolder>
     <logicalFolder name="SourceFiles"
                    displayName="Source Files"
@@ -19,6 +20,8 @@
       <itemPath>Connection.h</itemPath>
       <itemPath>MainWindow.cpp</itemPath>
       <itemPath>MainWindow.h</itemPath>
+      <itemPath>MainWindowTab.cpp</itemPath>
+      <itemPath>MainWindowTab.h</itemPath>
       <itemPath>MessageEditor.cpp</itemPath>
       <itemPath>MessageEditor.h</itemPath>
       <itemPath>Receive.cpp</itemPath>
@@ -32,11 +35,10 @@
       <itemPath>cannet.h</itemPath>
       <itemPath>controller.cpp</itemPath>
       <itemPath>controller.h</itemPath>
+      <itemPath>generalScreen.cpp</itemPath>
       <itemPath>generalScreen.h</itemPath>
+      <itemPath>gsConnect.cpp</itemPath>
       <itemPath>gsConnect.h</itemPath>
-      <itemPath>gsMessageEditor.h</itemPath>
-      <itemPath>gsReceive.h</itemPath>
-      <itemPath>gsTransmit.h</itemPath>
       <itemPath>main.cpp</itemPath>
       <itemPath>msg.cpp</itemPath>
       <itemPath>msg.h</itemPath>

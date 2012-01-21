@@ -21,7 +21,7 @@
 #include <QFile>
 #include <QTextStream>
 #include <QTime>
-#include "MessageEditor.h"
+//#include "MessageEditor.h"
 #define MAX_TABLE_SIZE 1000
 class Transmit : public QGroupBox
 {

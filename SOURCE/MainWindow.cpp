@@ -2,10 +2,11 @@
 #include "controller.h"
 #include <stdio.h>
 #include <string.h>
+#include <QTime>
 
 
-MainWindow :: MainWindow (QWidget *MainWin, 
-        Controller *mContr) : QWidget (MainWin),CanListener()
+MainWindow :: MainWindow (QWidget *MainWindow,
+        Controller *mContr) : QWidget (MainWindow),CanListener()
 {
     Contr=mContr;
     MainLayout = new QVBoxLayout;
@@ -26,7 +27,8 @@ MainWindow :: MainWindow (QWidget *MainWin,
     QObject::connect (MessEd,SIGNAL(SendSig(QString, QString, QString,QTime)),
             Trans,SLOT(SendSlot(QString, QString, QString,QTime)));
 
-    QObject::connect (this,SIGNAL(ReceiveSignal(int,int,QString,QTime)),Rec,SLOT(ReceiveSlot(int,int,QString,QTime)));
+    QObject::connect (this,SIGNAL(ReceiveSignal(int,int,QString,QTime)),Rec,
+            SLOT(ReceiveSlot(int,int,QString,QTime)));
 
     QObject::connect(Con,SIGNAL(active()),this,SLOT(connect()));
     QObject::connect(Con,SIGNAL(disactive()),this,SLOT(disconnect()));
@@ -52,11 +54,15 @@ int MainWindow :: disconnect()
 
 int MainWindow :: notify()
 {
+    printf("notify");
+    
     unsigned int i;
     QString text;
     char data_element[17];
     Msg *msg;
+    printf("notifying...\n");
     Contr->receive(&msg,num);
+    printf("Contr received\n");
     for (i=0;i<msg->getDlc();i++)
     {
         sprintf(data_element,"%02X",msg->getData(i));

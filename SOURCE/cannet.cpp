@@ -1,5 +1,5 @@
 #include "cannet.h"
-#include<stdio.h>
+#include <stdio.h>
 #include <unistd.h>
 
 
@@ -53,25 +53,31 @@ void *CanNet::writingthread(void *obj_ptr)
 
 void CanNet::reading()
 {
+    printf("\ncannet reading...\n");
 	Msg *msg;
 	while(1)
 	{
 		canio->receive(&msg);
 		rqueue.put(msg);
+                printf("putmsg in queue\n");
 	        // NOTIFY THE LISTENER
-	        // listener->notify();
+	        //listener->notify();
 		lstn->notify();
+                printf("notify\n");
 	}
 	pthread_exit(NULL);
 }
 void CanNet::writing()
 {
+    printf("cannet writing...\n");
 	Msg *msg;
 	while(1)
 	{
 		msg=wqueue.get();
+                printf("getmsg: id: %d, dls: %d\n",msg->getID(),msg->getDlc());
 		//printf("There is smth in Queue");
 		canio->send(msg);
+                printf("sendmsg\n");
 	}	
 	pthread_exit(NULL);
 }
@@ -79,6 +85,7 @@ void CanNet::writing()
 
 int CanNet::write(Msg *msg)
 {
+    printf("cannet write\n");
 	wqueue.put(msg);
 	return 0;
 
@@ -131,7 +138,7 @@ int MsgQueue::put(Msg* msg)
   mQueue.push(msg);
   sem_post(&s_empty);
   sem_post(&semaph);
-
+  printf("put msg in the queue!!!!!!!\n");
   
   return 0;
 }
