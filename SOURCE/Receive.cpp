@@ -246,6 +246,7 @@ void Receive :: RecTableFilter()
 
     idMaskTab = new QTableWidget(0,1);
     idMaskTab->setColumnWidth(0,255);
+    idMaskTab->verticalHeader()->setVisible(false);
 
     leftLayout = new QVBoxLayout;
     idMaskTab_Item = new QTableWidgetItem
@@ -301,7 +302,7 @@ void Receive::printMaskTab()
         for (it=maskTab.begin(); it!=maskTab.end(); it++)
         {
             idMaskTab->insertRow(0);
-            idMaskTab->setRowHeight(0,20);
+            idMaskTab->setRowHeight(0,15);
             QTableWidgetItem *addItem = new QTableWidgetItem;
             text.setNum(it->second);
             addItem->setText(text);
@@ -319,7 +320,7 @@ void Receive::printTmpMaskTab()
         for (it=tmpMaskTab.begin(); it!=tmpMaskTab.end(); it++)
         {
             idMaskTab->insertRow(0);
-            idMaskTab->setRowHeight(0,20);
+            idMaskTab->setRowHeight(0,15);
             QTableWidgetItem *addItem = new QTableWidgetItem;
             text.setNum(it->second);
             addItem->setText(text);
@@ -349,7 +350,7 @@ void Receive::addMask()
     {
         tmpMaskTab.insert(std::pair<int,int>(maskCount,id));
         idMaskTab->insertRow(0);
-        idMaskTab->setRowHeight(0,20);
+        idMaskTab->setRowHeight(0,15);
         QTableWidgetItem *addItem = new QTableWidgetItem;
         text.setNum(id);
         addItem->setText(text);
@@ -418,6 +419,7 @@ void Receive::saveChanges()
 
 void Receive::quit()
 {
+    tmpMaskTab.clear();
     if (prevChoose==0)
         choose=0;
     else

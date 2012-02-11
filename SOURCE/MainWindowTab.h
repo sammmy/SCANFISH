@@ -24,7 +24,6 @@ public slots:
     void changeTabText();
 
 private:
-    Controller *Contr;
     int numTab;
     //Connection *Con;
 

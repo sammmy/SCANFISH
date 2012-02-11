@@ -26,11 +26,10 @@ class MainWindow : public QWidget, public CanListener
     QVBoxLayout *MainLayout;
 
 public:
-    MainWindow (QWidget *MainWindow, Controller *mContr);
+    MainWindow (QWidget *MainWindow);
 
     int notify();
     int errorInNet(const char *str);
-    int getnum();
     void setContrNum();
     int num;
     Connection *Con;
@@ -49,8 +48,7 @@ private:
     MessageEditor *MessEd; 
     Transmit *Trans; 
     Receive *Rec;
-//    Connection *Con;
-    Controller *Contr;
+    GeneralScreen *gs;
 };
 
 #endif	/* MAINWINDOW_H */

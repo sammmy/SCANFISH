@@ -25,10 +25,7 @@ int main(int argc, char *argv[])
    qInstallMsgHandler(MsgHandler);
    QApplication app(argc,argv);
 
-   Controller *Con;
-   Con=Controller::getController();
-
-   MainWindow *MainWin=new MainWindow(NULL,Con);
+   MainWindow *MainWin=new MainWindow(NULL);
    MainWindowTab *MainWinTab=new MainWindowTab(NULL);
 
    QMainWindow mw(0);

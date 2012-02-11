@@ -7,8 +7,7 @@ MainWindowTab :: MainWindowTab(QTabWidget *tab1) : QTabWidget(tab1)
     tab=new QTabWidget;
     addBut = new QPushButton;
 
-    Contr=Controller::getController();
-    MainWin=new MainWindow(NULL,Contr);
+    MainWin=new MainWindow(NULL);
     tab->addTab(MainWin,"new net");
     //tab->setTabsClosable(true);
 
@@ -28,7 +27,7 @@ MainWindowTab :: MainWindowTab(QTabWidget *tab1) : QTabWidget(tab1)
 
 void MainWindowTab::addNewTab()
 {
-    MainWin=new MainWindow(NULL,Contr);
+    MainWin=new MainWindow(NULL);
     tab->addTab(MainWin,"new net");
     QObject::connect(MainWin->Con,SIGNAL(active()),this,
             SLOT(changeTabText()));

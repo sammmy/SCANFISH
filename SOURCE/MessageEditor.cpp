@@ -201,7 +201,6 @@ void MessageEditor::ChangeDLC()
 void MessageEditor :: SendSigSl()
 {
     emit changeNum();
-    Controller *cnt=Controller::getController();
     bool ok;
     QString data;
     int i;

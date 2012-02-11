@@ -12,5 +12,7 @@ public:
     int gsConnection(const char *interface,CanListener *canl);
     int gsDisconnection();
     int currentNet();
+
+    int setCurrentNum();
 };
 #endif /* GSCONNECT_H */

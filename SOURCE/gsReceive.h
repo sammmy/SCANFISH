@@ -3,6 +3,7 @@
 
 #include <stdio.h>
 #include <map>
+#include <time.h>
 #include "gsReceiveSL.h"
 #include "msg.h"
 #include "controller.h"
@@ -12,8 +13,17 @@ class GSReceive:public ReceiveSub
 public:
     GSReceive();
 
-    void haveReceived(Msg *msg);
+    void haveReceived();
+    void setMsg();
+    int getMsgId();
+    int getMsgDlc();
+    char getMsgData(int);
+    time_t getMsgTimestampSec();
+    int getMsgTimestampMS();
+    void setMsgFree();
 
+private:
+    Msg *msg;
 };
 
 class ReceiveTable:public ReceiveLstn

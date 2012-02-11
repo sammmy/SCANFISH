@@ -5,10 +5,8 @@
 #include <QTime>
 
 
-MainWindow :: MainWindow (QWidget *MainWindow,
-        Controller *mContr) : QWidget (MainWindow),CanListener()
+MainWindow :: MainWindow (QWidget *MainWindow) : QWidget (MainWindow),CanListener()
 {
-    Contr=mContr;
     MainLayout = new QVBoxLayout;
 
     MessEd = new MessageEditor(NULL);
@@ -43,11 +41,13 @@ int MainWindow :: connect()
 {
      MessEd->wakeUp();
      num=GeneralScreen::getGS()->GSCon->currentNet();
+     return 0;
 }
 
 int MainWindow :: disconnect()
 {
      MessEd->setSleep();
+     return 0;
 }
 
 int MainWindow :: notify()
@@ -55,19 +55,19 @@ int MainWindow :: notify()
     unsigned int i;
     QString text;
     char data_element[17];
-    Msg *msg;
-    Contr->receive(&msg,num);
-    for (i=0;i<msg->getDlc();i++)
+    gs = GeneralScreen::getGS();
+    gs->GSRec->setMsg();
+    for (i=0;i<gs->GSRec->getMsgDlc();i++)
     {
-        sprintf(data_element,"%02X",msg->getData(i));
+        sprintf(data_element,"%02X",gs->GSRec->getMsgData(i));
         text=text+" "+QString::fromAscii(data_element,strlen(data_element));
     }
     QTime time;
-    time=((QDateTime::fromTime_t(msg->getTimestampSec())).time());
-    time=time.addMSecs(msg->getTimestampMS()/1000);
-    GeneralScreen::getGS()->GSRec->haveReceived(msg);
-    emit ReceiveSignal(msg->getID(),msg->getDlc(),text,time);
-    msg->setMsgFree();
+    time=((QDateTime::fromTime_t(gs->GSRec->getMsgTimestampSec())).time());
+    time=time.addMSecs(gs->GSRec->getMsgTimestampMS()/1000);
+    gs->GSRec->haveReceived();
+    emit ReceiveSignal(gs->GSRec->getMsgId(), gs->GSRec->getMsgDlc(),text,time);
+    gs->GSRec->setMsgFree();
     return 0;
 }
 
@@ -101,12 +101,7 @@ void MainWindow::showCredits()
     lbl->show();
 }
 
-int MainWindow::getnum()
-{
-    return num;
-}
-
 void MainWindow::setCurrentNum()
 {
-    Contr->contrNum=num;
+    GeneralScreen::getGS()->GSCon->setCurrentNum();
 }

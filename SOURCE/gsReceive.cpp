@@ -4,9 +4,44 @@ GSReceive::GSReceive()
 {
 }
 
-void GSReceive::haveReceived(Msg* msg)
+void GSReceive::haveReceived()
 {
     notify(msg);
+}
+
+void GSReceive::setMsg()
+{
+    Controller::getController()->receive(&msg,Controller::getController()->contrNum);
+}
+
+int GSReceive::getMsgId()
+{
+    return msg->getID();
+}
+
+int GSReceive::getMsgDlc()
+{
+    return msg->getDlc();
+}
+
+char GSReceive::getMsgData(int i)
+{
+    return msg->getData(i);
+}
+
+time_t GSReceive::getMsgTimestampSec()
+{
+    return msg->getTimestampSec();
+}
+
+int GSReceive::getMsgTimestampMS()
+{
+    return msg->getTimestampMS();
+}
+
+void GSReceive::setMsgFree()
+{
+    msg->setMsgFree();
 }
 
 ReceiveTable::ReceiveTable(GSReceive *gsR)

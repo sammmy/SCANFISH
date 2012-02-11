@@ -1,4 +1,5 @@
 #include "gsConnect.h"
+#include "generalScreen.h"
 
 GSConnect::GSConnect()
 {
@@ -26,4 +27,9 @@ int GSConnect::currentNet()
     std::map <int,CanNet*>::iterator it;
     it=Controller::getController()->nettab.find(Controller::getController()->netCount);
     return it->first;
+}
+
+int GSConnect::setCurrentNum()
+{
+    Controller::getController()->contrNum = GeneralScreen::getGS()->GSCon->currentNet();
 }
