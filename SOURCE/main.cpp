@@ -37,7 +37,7 @@ int main(int argc, char *argv[])
    menu->addAction("Quit",&app,SLOT(quit()));
    mbar->addMenu(menu);
 
-   mw.setGeometry(100,100,850,550);
+   mw.setGeometry(100,100,930,600);
    mw.show();
 
    return app.exec();

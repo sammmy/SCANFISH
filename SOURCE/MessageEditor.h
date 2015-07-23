@@ -13,6 +13,7 @@
 #include <QRegExpValidator>
 #include <QRegExp>
 #include <QVariant>
+#include <QTabWidget>
 #include <QTableWidgetItem>
 #include <QSpinBox>
 #include <QSize>
@@ -27,7 +28,17 @@
 class MessageEditor : public QGroupBox
 {
     Q_OBJECT
-    QGridLayout *MesEditLayout;
+
+    QGridLayout *createMesLayout;
+    QGridLayout *sendOptionsLayout;
+
+    QGridLayout *MainMesEditLayout;
+
+    QWidget *createMesTabWidget;
+    QWidget *sendOptionsTabWidget;
+
+    void buildCreateMesTab();
+    void buildSendOptionsTab();
 
 public:
     MessageEditor (QWidget *MesEd);
@@ -73,6 +84,8 @@ private:
 
     QWidget *DATA_Widget;
     QWidget *fDATA_Widget;
+    QTabWidget *createMesTab;
+    QTabWidget *sendOptionsTab;
 
     int i,k,s,d,f;
     QLineEdit *bLineEdit_DATA[8];
